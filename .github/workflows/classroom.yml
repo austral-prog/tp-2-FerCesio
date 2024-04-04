@@ -14,16 +14,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: run all python test
-      id: run-all-python-test
-      uses: education/autograding-python-grader@v1
+    - name: submission_test
+      id: submission_test
+      uses: education/autograding-command-grader@v1
       with:
-        timeout: 10
-        max-score: 1
-        setup-command: ''
+        test-name: submission_test
+        setup-command: sudo -H pip3 install --upgrade pip; sudo -H pip3 install setuptools; sudo -H pip3 install -U -r requirements.txt
+        command: pytest
+        timeout: 60
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
         RUN-ALL-PYTHON-TEST_RESULTS: "${{steps.run-all-python-test.outputs.result}}"
       with:
         runners: run-all-python-test
+    
