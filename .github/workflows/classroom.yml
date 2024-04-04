@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: submission_test
+    - name: submission test
       id: submission_test
       uses: education/autograding-command-grader@v1
       with:
@@ -25,7 +25,7 @@ jobs:
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        RUN-ALL-PYTHON-TEST_RESULTS: "${{steps.run-all-python-test.outputs.result}}"
+        RUN-ALL-PYTHON-TEST_RESULTS: "${{steps.submission_test.outputs.result}}"
       with:
-        runners: run-all-python-test
+        runners: submission_test
     
