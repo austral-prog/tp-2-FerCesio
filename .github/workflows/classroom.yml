@@ -25,7 +25,7 @@ jobs:
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
       env:
-        SUBMITION-TEST_RESULTS: "${{steps.submission_test.outputs.result}}"
+        SUBMISSION-TEST_RESULTS: "${{steps.submission_test.outputs.result}}"
       with:
         runners: submission_test
     
